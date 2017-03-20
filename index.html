@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/vue.js"></script>
+    <script src="/vuex.js"></script>
+    <script src="/rehttpBrowser.js"></script>
+    <style>
+        #app {
+            display: flex;
+            position: fixed;
+            flex-direction: column;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+        }
+
+        .messages {
+            border: 2px solid black;
+            overflow: auto;
+            flex-grow: 1;
+        }
+
+        .messages > div {
+            border-bottom: 1px solid lightgray;
+        }
+
+        .messages > div.pending {
+            opacity: .5;
+        }
+
+        .message-input {
+            display: block;
+            height: 100px;
+        }
+        .actions {
+
+        }
+
+        .message-input textarea {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="messages">
+        <message v-for="message in messages" v-bind:message="message"/>
+    </div>
+    <div class="actions">
+        <button v-if="hasMessagesInQueueAndNotSending" @click="resend">Resend</button>
+    </div>
+    <div class="message-input">
+        <textarea v-model="currentMessageInput" v-on:keyup.13="addMessage"></textarea>
+    </div>
+</div>
+
+<script src="app.js"></script>
+
+
+</body>
+</html>
